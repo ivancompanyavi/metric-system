@@ -210,7 +210,7 @@ def install_grafana():
 def install_elasticsearch():
     sudo('yum install -y java-1.7.0-openjdk java-1.7.0-openjdk-devel')
     sudo('rpm --import http://packages.elasticsearch.org/GPG-KEY-elasticsearch')
-    put(config_file('elasticsearch', 'elasticsearch.repo'), '/etc/yum.repos.d/')
+    put(config_file('elasticsearch', 'elasticsearch.repo'), '/etc/yum.repos.d/', use_sudo=True)
     sudo('yum install -y elasticsearch')
     sudo('service elasticsearch start')
 
@@ -231,9 +231,9 @@ def install_kibana():
 
 @task
 def install():
-    install_graphite()
-    install_statsd()
-    install_grafana()
+    #install_graphite()
+    #install_statsd()
+    #install_grafana()
     install_elasticsearch()
     install_logstash()
     install_kibana()

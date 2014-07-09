@@ -47,9 +47,9 @@ Post-Installation
 In our new virtual environment we have started a NGINX server in order to have the two webapps up and running. If we want to see them, we have to add to our /etc/hosts the following lines:
 
 ```
-127.0.0.1     graphite.vagrant.com
-127.0.0.1     grafana.vagrant.com
-127.0.0.1     kibana.vagrant.com
+127.0.0.1       graphite.vagrant.com
+127.0.0.1       grafana.vagrant.com
+127.0.0.1       kibana.vagrant.com
 ```
 
 After this, you can access to Kibana and Grafana with http://kibana.vagrant.com:8080 and http://grafana.vagrant.com:8080
