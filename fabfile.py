@@ -25,12 +25,6 @@ def command_exists(command):
 
     return result
 
-@task
-def install():
-    install_graphite()
-    install_statsd()
-    install_grafana()
-
 def install_wget():
     if not command_exists('wget'):
         sudo('yum install -y wget')
@@ -233,3 +227,13 @@ def install_kibana():
         run('wget https://download.elasticsearch.org/kibana/kibana/kibana-3.1.0.tar.gz')
         run('tar -xzvf kibana-3.1.0.tar.gz')
         sudo('mv kibana-3.1.0 /opt/kibana')
+
+
+@task
+def install():
+    install_graphite()
+    install_statsd()
+    install_grafana()
+    install_elasticsearch()
+    install_logstash()
+    install_kibana()
