@@ -101,7 +101,7 @@ def install_graphite():
     sudo('yum -y install gcc libffi-devel wget python-devel bzip2-devel sqlite-devel libpng-devel pixman pixman-devel cairo pycairo')
     run('mkdir -p /home/vagrant/src')
     _install_pip()
-    sudo('pip install supervisor simplejson') # required for django admin
+    sudo('pip install supervisor simplejson cairocffi') # required for django admin
     sudo('mkdir -p /opt/graphite')
     sudo('chmod 777 -R /opt')
     sudo('pip install git+https://github.com/graphite-project/carbon.git@0.9.x#egg=carbon')
@@ -219,6 +219,7 @@ def install_logstash():
     sudo('rpm --import http://packages.elasticsearch.org/GPG-KEY-elasticsearch')
     put(config_file('logstash', 'logstash.repo'), '/etc/yum.repos.d/', use_sudo=True)
     sudo('yum install -y logstash')
+    put(config_file('logstash', 'scraper.conf'), '/etc/logstash/conf.d', use_sudo=True)
     sudo('service logstash start')
 
 @task
