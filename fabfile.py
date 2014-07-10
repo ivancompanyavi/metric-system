@@ -92,7 +92,6 @@ def _install_nginx():
     sudo('nginx')
 
 
-@task
 def install_graphite():
     """
     Installs Graphite and dependencies
@@ -101,7 +100,8 @@ def install_graphite():
     sudo('yum -y install gcc libffi-devel wget python-devel bzip2-devel sqlite-devel libpng-devel pixman pixman-devel cairo pycairo')
     run('mkdir -p /home/vagrant/src')
     _install_pip()
-    sudo('pip install supervisor simplejson cairocffi') # required for django admin
+    sudo('pip install simplejson cairocffi') # required for django admin
+    sudo('pip install supervisor==3.0b2')
     sudo('mkdir -p /opt/graphite')
     sudo('chmod 777 -R /opt')
     sudo('pip install git+https://github.com/graphite-project/carbon.git@0.9.x#egg=carbon')
@@ -137,7 +137,7 @@ def install_graphite():
 
     # initializing graphite django db
     with cd('/opt/graphite/webapp/graphite'):
-        sudo("/usr/bin/python2.7 manage.py syncdb")
+        sudo("/usr/bin/python2.7 manage.py syncdb --noinput")
 
     # changing ownership on graphite folders
     sudo('chown -R vagrant: /opt/graphite/')
@@ -158,7 +158,7 @@ def install_graphite():
     Statsd installation
  ===========================
 """
-@task
+
 def install_statsd():
     """
     Installs etsy's node.js statsd and dependencies
@@ -190,7 +190,7 @@ def install_statsd():
  ===========================
 """
 
-@task
+
 def install_grafana():
     """
     Installs Grafana
@@ -206,7 +206,7 @@ def install_grafana():
 
 
 
-@task
+
 def install_elasticsearch():
     sudo('yum install -y java-1.7.0-openjdk java-1.7.0-openjdk-devel')
     sudo('rpm --import http://packages.elasticsearch.org/GPG-KEY-elasticsearch')
@@ -214,7 +214,7 @@ def install_elasticsearch():
     sudo('yum install -y elasticsearch')
     sudo('service elasticsearch start')
 
-@task
+
 def install_logstash():
     sudo('rpm --import http://packages.elasticsearch.org/GPG-KEY-elasticsearch')
     put(config_file('logstash', 'logstash.repo'), '/etc/yum.repos.d/', use_sudo=True)
@@ -222,19 +222,24 @@ def install_logstash():
     put(config_file('logstash', 'scraper.conf'), '/etc/logstash/conf.d', use_sudo=True)
     sudo('service logstash start')
 
-@task
+
 def install_kibana():
     with cd('/home/vagrant/src'):
         run('wget https://download.elasticsearch.org/kibana/kibana/kibana-3.1.0.tar.gz')
         run('tar -xzvf kibana-3.1.0.tar.gz')
         sudo('mv kibana-3.1.0 /opt/kibana')
 
+@task
+def run():
+    sudo('nginx')
+    run('supervisord -c /etc/supervisord.conf')
+    sudo('service elasticsearch start')
 
 @task
 def install():
-    #install_graphite()
-    #install_statsd()
-    #install_grafana()
+    install_graphite()
+    install_statsd()
+    install_grafana()
     install_elasticsearch()
     install_logstash()
     install_kibana()
