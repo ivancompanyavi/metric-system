@@ -54,5 +54,19 @@ In our new virtual environment we have started a NGINX server in order to have t
 
 After this, you can access to Kibana and Grafana with http://kibana.vagrant.com:8080 and http://grafana.vagrant.com:8080
 
+
+Schema
+------
+The following table shows how the internal architecture of myChef works, with their ports and configuration files
+
+Tool          | Description                                                             | configuration file         | ports
+------------- | ----------------------------------------------------------------------  | -------------------------- | -----
+Graphite      | Graphic tool for showing the signals of Statsd                          | /opt/graphite/conf         | 2003 (Carbon)
+Statsd        | framework for making aggregation with the signals of our application    | /opt/statsd/localConfig.js | 8125
+Grafana       | Improved dashboard for Graphite                                         | /opt/grafana/              | 8080 (grafana.vagrant.com:8080)
+Elasticsearch | Indexing engine for searching our logs                                  |                            | 9200 (HTTP)
+Logstash      | Tool for reading, parsing, processing and sending logs to Elasticsearch | /etc/logstash/conf.d       | It depends of the configuration (currently 5858 for UDP)
+Kibana        | Web interface for logstash/elasticsearch data                           | /opt/kibana/config.js      | 8080 (kibana.vagrant.com:8080)
+
 [Vagrant main page]:http://www.vagrantup.com/
 [PIP download page]:http://pip.readthedocs.org/en/latest/installing.html
