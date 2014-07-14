@@ -230,7 +230,7 @@ def install_kibana():
         sudo('mv kibana-3.1.0 /opt/kibana')
 
 @task
-def run():
+def up():
     sudo('nginx')
     run('supervisord -c /etc/supervisord.conf')
     sudo('service elasticsearch start')
