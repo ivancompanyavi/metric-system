@@ -18,7 +18,7 @@ Before you start to download and play with the environment, you need to have the
 - PIP ([Pip download page])
 - Fabric and fabtools
 ```
-sudo pip install Fabric fabtools
+sudo pip install fabric==1.8.1 fabtools
 ```
 
 Installation
