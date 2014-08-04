@@ -50,6 +50,7 @@ Optional Variables:
 , graphitePort: 2003
 , graphiteHost: "localhost"
 , log: {
-  backend: '/var/log/statsd/statsd.log'
+  backend: 'stdout',
+  application: '/var/log/statsd/statsd.log'
 }
 }
