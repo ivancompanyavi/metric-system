@@ -26,7 +26,7 @@ Installation
 To install MyChef, follow these steps:
 - Download this project
 ```
-git clone https://github.com/ivangoblin/mychef.git
+git clone https://github.com/203webgroup/myChef
 ```
 - Add the CentOS box to the Vagrant boxes
 ```
