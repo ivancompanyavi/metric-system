@@ -26,7 +26,7 @@ Installation
 To install the metric system, follow these steps:
 - Download this project
 ```
-git clone https://github.com/ivangoblin/metric-system
+git clone https://github.com/ivangoblin/metric-system.git
 ```
 - Add the CentOS box to the Vagrant boxes
 ```
