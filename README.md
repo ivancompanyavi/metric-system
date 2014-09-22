@@ -1,7 +1,7 @@
-MyChef
-======
+Metric System
+=============
 
-MyChef is a boilerplate created for developing an environment in MyTaste with the tools needed for logging, searching and graphing. This environment builds the following tools:
+This is a boilerplate created for developing with tools needed for logging, searching and graphing. This environment builds the following tools:
 
 - Graphite (Graphing tools)
 - Grafana (An inproved dashboard for Graphite)
@@ -23,10 +23,10 @@ sudo pip install fabric==1.8.1 fabtools
 
 Installation
 ------------
-To install MyChef, follow these steps:
+To install the metric system, follow these steps:
 - Download this project
 ```
-git clone https://github.com/203webgroup/myChef
+git clone https://github.com/ivangoblin/metric-system
 ```
 - Add the CentOS box to the Vagrant boxes
 ```
