@@ -57,7 +57,7 @@ After this, you can access to Kibana and Grafana with http://kibana.vagrant.com:
 
 Schema
 ------
-The following table shows how the internal architecture of myChef works, with their ports and configuration files
+The following table shows how the internal architecture of the metric system works, with their ports and configuration files
 
 Tool          | Description                                                             | configuration file         | ports
 ------------- | ----------------------------------------------------------------------  | -------------------------- | -----
